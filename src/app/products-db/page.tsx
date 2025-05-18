@@ -1,6 +1,7 @@
 import { getProducts } from "@/prisma-db";
+import Link from "next/link";
 
-type Product = {
+export type Product = {
     id: number;
     title: string;
     price: number;
@@ -25,7 +26,7 @@ export default async function ProductsDBPage() {
                 <tbody>
                     {products.map(product => (
                         <tr key={product.id} className="hover:bg-gray-50">
-                            <td className="border px-4 py-2">{product.id}</td>
+                            <td className="border px-4 py-2"><Link href={`/products-db/${product.id}`}>{product.id}</Link></td>
                             <td className="border px-4 py-2">{product.title}</td>
                             <td className="border px-4 py-2">${product.price.toFixed(2)}</td>
                             <td className="border px-4 py-2">{product.description || "—"}</td>
